@@ -21,19 +21,18 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
             }
         }
 
+        var csv_dir: String = params.inPath
+        val csvFileExtensions = List("csv")
+        val files = getListOfFiles(new File(csv_dir), csvFileExtensions)
+        var dataReader = spark.read
+         params.inOptions.toSeq.foreach{
+            op => dataReader = dataReader.option(op._1, op._2)
+        }
+
         // Function to check if file list contains Connections, Invitations, Positions, Profile, messages then read them
         def read_dataframe(text: List[File], chr: String): DataFrame = text match{
             case _ if text.toString.contains(chr) => dataReader.csv(chr)
             case _ => spark.emptyDataFrame
-        }
-
-        var csv_dir: String = params.inPath
-        val csvFileExtensions = List("csv")
-        val files = getListOfFiles(new File(csv_dir), csvFileExtensions)
-
-        var dataReader = spark.read
-         params.inOptions.toSeq.foreach{
-            op => dataReader = dataReader.option(op._1, op._2)
         }
 
         // Read corresponding dataframes
