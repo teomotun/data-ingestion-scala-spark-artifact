@@ -184,6 +184,7 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
                     $"Connections_Companies", $"Connections_Positions", $"Subject", $"Content")
             .orderBy("Date")
 
+        outputDF.show
 
         SaveParameters(outputDF,sparkParams)
 
