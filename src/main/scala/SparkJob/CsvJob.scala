@@ -8,7 +8,7 @@ import org.apache.spark.mllib._
 import org.apache.spark.ml.feature
 import java.io.File
 
-object CsvJob extends DataJob[Array, Array] {
+object CsvJob extends DataJob[Array[DataFrame], Array[DataFrame]] {
 
 
 
@@ -22,7 +22,7 @@ object CsvJob extends DataJob[Array, Array] {
         }
 
         // Function to check if file list contains Connections, Invitations, Positions, Profile, messages then read them
-        def read_dataframe(text: List[File], chr: String): org.apache.spark.sql.DataFrame = text match{
+        def read_dataframe(text: List[File], chr: String): DataFrame = text match{
             case _ if text.toString.contains(chr) => dataReader.csv(chr)
             case _ => spark.emptyDataFrame
         }
@@ -54,7 +54,7 @@ object CsvJob extends DataJob[Array, Array] {
         inputDFs
     }
 
-    override def transform(inputData: Array)(implicit spark:SparkSession, sparkParams:SparkParams) = {
+    override def transform(inputData: Array[DataFrame])(implicit spark:SparkSession, sparkParams:SparkParams) = {
         import spark.implicits._
 
 
