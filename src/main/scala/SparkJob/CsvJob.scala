@@ -8,7 +8,7 @@ import org.apache.spark.mllib._
 import org.apache.spark.ml.feature
 import java.io.File
 
-object CsvJob extends DataJob[DataFrame, DataFrame] {
+object CsvJob extends DataJob[Array, Array] {
 
 
 
