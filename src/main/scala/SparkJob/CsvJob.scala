@@ -58,6 +58,12 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
         var profile = inputData(3)
         var messages = inputData(4)
 
+        connections.show
+        invitations.show
+        positions.show
+        profile.show
+        messages.show
+
 
         // Working on connections data
         // Convert "Connected On" to date, get day of week and month
