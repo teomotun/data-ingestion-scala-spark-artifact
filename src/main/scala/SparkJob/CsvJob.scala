@@ -49,12 +49,12 @@ object CsvJob extends DataJob[DataFrame, DataFrame] {
         // params.inOptions.toSeq.foreach{
         //    op => dataReader = dataReader.option(op._1, op._2)
         //}
-        val inputDF = dataReader.csv(params.inPath)
+        //val inputDF = dataReader.csv(params.inPath)
         
         inputDFs
     }
 
-    override def transform(inputData: DataFrame)(implicit spark:SparkSession, sparkParams:SparkParams) = {
+    override def transform(inputData: Array)(implicit spark:SparkSession, sparkParams:SparkParams) = {
         import spark.implicits._
 
 
