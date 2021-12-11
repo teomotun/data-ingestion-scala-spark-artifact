@@ -23,8 +23,7 @@ object CsvJob extends DataJob[DataFrame, DataFrame] {
 
         // Function to check if file list contains Connections, Invitations, Positions, Profile, messages then read them
         def read_dataframe(text: List[File], chr: String): org.apache.spark.sql.DataFrame = text match{
-            var CsvReader = dataReader
-            case _ if text.toString.contains(chr) => CsvReader.csv(chr)
+            case _ if text.toString.contains(chr) => dataReader.csv(chr)
             case _ => spark.emptyDataFrame
         }
 
