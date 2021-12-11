@@ -37,11 +37,11 @@ object CsvJob extends DataJob[DataFrame, DataFrame] {
         }
 
         // Read corresponding dataframes
-        var connections = read_dataframe(files, csv_dir + "Connections.csv", dataReader)
-        var invitations = read_dataframe(files,csv_dir + "Invitations.csv", dataReader)
-        var positions = read_dataframe(files, csv_dir + "Positions.csv", dataReader)
-        var profile = read_dataframe(files, csv_dir + "Profile.csv", dataReader)
-        var messages = read_dataframe(files, csv_dir + "messages.csv", dataReader)
+        var connections = read_dataframe(files, csv_dir + "Connections.csv")
+        var invitations = read_dataframe(files,csv_dir + "Invitations.csv")
+        var positions = read_dataframe(files, csv_dir + "Positions.csv")
+        var profile = read_dataframe(files, csv_dir + "Profile.csv")
+        var messages = read_dataframe(files, csv_dir + "messages.csv")
 
         val inputDFs = Array(connections, invitations, positions, profile,  messages)
 
