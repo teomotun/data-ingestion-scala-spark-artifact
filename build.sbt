@@ -7,7 +7,7 @@ libraryDependencies ++= Seq(
     "org.apache.spark" %% "spark-core" % sparkVersion,
     "org.apache.spark" %% "spark-sql" % sparkVersion,
     "org.apache.spark" %% "spark-mllib" % "2.4.0",
-    "org.apache.spark" %% "spark-ml-feature" % sparkVersion % "compile",
+    //"org.apache.spark" %% "spark-ml-feature" % sparkVersion % "compile",
     "com.github.scopt" %% "scopt" % "4.0.0-RC2",
     "org.scala-lang" % "scala-reflect" % "2.12.3",
     //"java" %% "io" 
