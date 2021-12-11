@@ -5,9 +5,12 @@ scalaVersion := "2.12.11"
 val sparkVersion = "3.1.1"
 libraryDependencies ++= Seq(
     "org.apache.spark" %% "spark-core" % sparkVersion,
-    "org.apache.spark" %% "spark-sql" % sparkVersion ,
+    "org.apache.spark" %% "spark-sql" % sparkVersion,
+    "org.apache.spark" %% "spark-mllib" % sparkVersion,
+    "org.apache.spark" %% "spark-ml-feature" % sparkVersion % "compile",
     "com.github.scopt" %% "scopt" % "4.0.0-RC2",
-    "org.scala-lang" % "scala-reflect" % "2.12.3"
+    "org.scala-lang" % "scala-reflect" % "2.12.3",
+    "java" %% "io" 
 )
 
 // mark the main function for assembly so that it know where to invoke when the jar is being provided in class path
