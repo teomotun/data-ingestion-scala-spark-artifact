@@ -59,11 +59,11 @@ object CsvJob extends DataJob[Array[DataFrame], Array[DataFrame]] {
 
 
         // Parse Read dataframe Array
-        connections = inputData(0)
-        invitations = inputData(1)
-        positions = inputData(2)
-        profile = inputData(3)
-        messages = inputData(4)
+        var connections = inputData(0)
+        var invitations = inputData(1)
+        var positions = inputData(2)
+        var profile = inputData(3)
+        var messages = inputData(4)
 
 
         // Working on connections data
