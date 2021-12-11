@@ -10,7 +10,7 @@ libraryDependencies ++= Seq(
     "org.apache.spark" %% "spark-ml-feature" % sparkVersion % "compile",
     "com.github.scopt" %% "scopt" % "4.0.0-RC2",
     "org.scala-lang" % "scala-reflect" % "2.12.3",
-    "java" %% "io" 
+    //"java" %% "io" 
 )
 
 // mark the main function for assembly so that it know where to invoke when the jar is being provided in class path
