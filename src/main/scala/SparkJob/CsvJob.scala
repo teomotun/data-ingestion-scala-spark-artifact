@@ -8,7 +8,7 @@ import org.apache.spark.mllib._
 import org.apache.spark.ml.feature
 import java.io.File
 
-object CsvJob extends DataJob[Array[DataFrame], Array[DataFrame]] {
+object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
 
 
 
@@ -45,12 +45,6 @@ object CsvJob extends DataJob[Array[DataFrame], Array[DataFrame]] {
 
         val inputDFs = Array(connections, invitations, positions, profile,  messages)
 
-        //var dataReader = spark.read
-        // params.inOptions.toSeq.foreach{
-        //    op => dataReader = dataReader.option(op._1, op._2)
-        //}
-        //val inputDF = dataReader.csv(params.inPath)
-        
         inputDFs
     }
 
@@ -192,7 +186,6 @@ object CsvJob extends DataJob[Array[DataFrame], Array[DataFrame]] {
             .orderBy("Date")
 
 
-        //val outputDF = data.withColumn("source",lit("wcd"))
         SaveParameters(outputDF,sparkParams)
 
     }
