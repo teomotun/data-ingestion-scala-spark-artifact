@@ -31,7 +31,7 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
 
         "mkdir -p input_data" !!
 
-        println("Made new directory")
+        println("Made new directory") 
 
         // Download the csv files from s3 path
         Seq("aws", "s3", "cp", s3_path, csv_dir, "--recursive").!
