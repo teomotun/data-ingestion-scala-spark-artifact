@@ -34,7 +34,6 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
         // Download the csv files from s3 path
         Seq("aws", "s3", "cp", s3_path, csv_dir, "--recursive").!
 
-        var csv_dir: String = params.inPath
         val csvFileExtensions = List("csv")
         val files = getListOfFiles(new File(csv_dir), csvFileExtensions)
         var dataReader = spark.read
