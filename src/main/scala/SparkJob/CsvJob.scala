@@ -31,8 +31,11 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
 
         "mkdir -p $csv_dir" !!
 
+        println("Made new directory")
+
         // Download the csv files from s3 path
         Seq("aws", "s3", "cp", s3_path, csv_dir, "--recursive").!
+        println("Downloaded folder from S3")
 
         val csvFileExtensions = List("csv")
         val files = getListOfFiles(new File(csv_dir), csvFileExtensions)
