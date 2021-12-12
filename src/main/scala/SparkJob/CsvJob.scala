@@ -7,6 +7,10 @@ import org.apache.spark.sql.types._
 import org.apache.spark.mllib._
 import org.apache.spark.ml.feature
 import java.io.File
+import sys.process._
+import scala.language.postfixOps
+import scala.sys.process.ProcessLogger
+
 
 object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
 
@@ -20,6 +24,15 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
                 extensions.exists(file.getName.endsWith(_))
             }
         }
+
+        // Make directory to store folder from S3
+        var s3_path: String = params.inPath
+        var csv_dir: String = "/home/data"
+
+        "mkdir -p $csv_dir" !!
+
+        // Download the csv files from s3 path
+        Seq("aws", "s3", "cp", s3_path, csv_dir, "--recursive").!
 
         var csv_dir: String = params.inPath
         val csvFileExtensions = List("csv")
