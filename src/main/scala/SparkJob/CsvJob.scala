@@ -39,6 +39,8 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
 
         val csvFileExtensions = List("csv")
         val files = getListOfFiles(new File(csv_dir), csvFileExtensions)
+        println(files)
+        
         spark.sql("set spark.sql.legacy.timeParserPolicy=LEGACY")
         var dataReader = spark.read
          params.inOptions.toSeq.foreach{
