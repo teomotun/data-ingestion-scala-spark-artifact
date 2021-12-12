@@ -60,6 +60,8 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
 
         val inputDFs = Array(connections, invitations, positions, profile,  messages)
 
+        connections.show
+
         inputDFs
     }
 
