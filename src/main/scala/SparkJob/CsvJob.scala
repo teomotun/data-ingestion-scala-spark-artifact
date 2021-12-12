@@ -26,8 +26,8 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
         }
 
         // Make directory to store folder from S3
-        var s3_path: String = params.inPath
-        var csv_dir: String = "/home/data"
+        var s3_path = params.inPath
+        var csv_dir = "/home/data"
 
         "mkdir -p $csv_dir" !!
 
