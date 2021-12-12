@@ -27,9 +27,9 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
 
         // Make directory to store folder from S3
         var s3_path: String = params.inPath
-        var csv_dir: String = "/home/hadoop/data/"
+        var csv_dir: String = "input_data/"
 
-        "mkdir -p $csv_dir" !!
+        "mkdir -p input_data" !!
 
         println("Made new directory")
 
@@ -40,7 +40,7 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
         val csvFileExtensions = List("csv")
         val files = getListOfFiles(new File(csv_dir), csvFileExtensions)
         println(files)
-        
+
         spark.sql("set spark.sql.legacy.timeParserPolicy=LEGACY")
         var dataReader = spark.read
          params.inOptions.toSeq.foreach{
@@ -60,9 +60,9 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
         var profile = read_dataframe(files, csv_dir + "Profile.csv")
         var messages = read_dataframe(files, csv_dir + "messages.csv")
 
-        val inputDFs = Array(connections, invitations, positions, profile,  messages)
+        connections.show; invitations.show; positions.show; profile.show; messages.show
 
-        connections.show
+        val inputDFs = Array(connections, invitations, positions, profile,  messages)
 
         inputDFs
     }
