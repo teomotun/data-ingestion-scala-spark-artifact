@@ -39,6 +39,7 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
 
         val csvFileExtensions = List("csv")
         val files = getListOfFiles(new File(csv_dir), csvFileExtensions)
+        spark.sql("set spark.sql.legacy.timeParserPolicy=LEGACY")
         var dataReader = spark.read
          params.inOptions.toSeq.foreach{
             op => dataReader = dataReader.option(op._1, op._2)
@@ -197,10 +198,11 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
             .withColumnRenamed("Date_c","Date")
             .withColumn("Day", date_format($"Date", "EEEE"))
             .withColumn("Month", date_format($"Date", "MMMM"))
+            .withColumn("Year", date_format($"Date", "yyyy"))
             .withColumn("User_Name", lit(user_name))
             .withColumn("Experience", lit(years_of_experience))
             // Reorder
-            .select($"User_Name", $"Experience", $"Date", $"Month", $"Day", $"No_of_Connections", 
+            .select($"User_Name", $"Experience", $"Date", $"Year", $"Month", $"Day", $"No_of_Connections", 
                     $"Outgoing_Invites", $"Incoming_Invites", $"No_of_Conversations", 
                     $"Connections_Companies", $"Connections_Positions", $"Subject", $"Content")
             .orderBy("Date")
