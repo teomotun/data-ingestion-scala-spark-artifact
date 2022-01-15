@@ -218,7 +218,7 @@ object CsvJob extends DataJob[Array[DataFrame], DataFrame] {
     }
 
     override def save(p:SaveParameters) {
-        p.df.write
+        p.df.coalesce(1).write
         .partitionBy(p.params.partitionColumn)
         .options(p.params.outOptions)
         .format(p.params.outFormat)
