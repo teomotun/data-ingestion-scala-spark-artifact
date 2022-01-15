@@ -1,2 +1,2 @@
-# data-ingestion-scala-spark-artifact 
+# data-ingestion-scala-spark-artifact  
 
